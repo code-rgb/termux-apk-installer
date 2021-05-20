@@ -6,16 +6,16 @@ termux_apk () {
 
 termux_update_promt () {
     local url
-    read -p "Note: This script requires latest Termux from F-Droid.\n\nUpdate Termux ? (y/n)  " -t 15 -n 1 -r
+    read -p "Note: This script requires latest Termux from F-Droid. Update Termux ? (y/n)  " -t 15 -n 1 -r
     if [[ ! $REPLY =~ ^[Yy]$ ]]
     then
         echo -e "\n  Skipping ..."
     else
         echo -e "\nDownloading Latest Apk ..."
-        curl -s -o "storage/termux_latest.apk" $(termux_apk)
+        curl -s -o "/data/data/com.termux/files/home/storage/termux_latest.apk" $(termux_apk)
         exit 1
     fi
-} 
+}
 echo "Initializing"
 termux-setup-storage
 pkg update -y && pkg upgrade -y

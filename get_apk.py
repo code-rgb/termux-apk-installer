@@ -61,7 +61,7 @@ async def write_choice(session: aiohttp.ClientSession):
         if source == "direct":
             return x["link"]
         if source == "gcam":
-            xml_path = "storage/Gcam/BSG"
+            xml_path = "/data/data/com.termux/files/home/storage/Gcam/BSG"
             if not os.path.exists(xml_path):
                 os.mkdir(xml_path)
             with open(os.path.join(xml_path, "config.xml"), "w") as xml_file:
