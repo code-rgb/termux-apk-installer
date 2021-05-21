@@ -35,7 +35,7 @@ class FetchApk:
 
 def promt(title: str, info: str) -> bool:
     answer = input(
-        f"\n • {title} ({info})\n  Q. Do you want to install {title} ?\n  (y/n) : "
+        f"\n • {title} ({info})\n  > Do you want to install {title} ?\n  (y/n) : "
     ).lower()
     if answer in ("yes", "y"):
         print("  [+]  added", title)
@@ -47,10 +47,10 @@ def promt(title: str, info: str) -> bool:
     return False
 
 
-async def write_choice(session: aiohttp.ClientSession):
+async def write_choice(session: aiohttp.ClientSession) -> None:
     apkdl = FetchApk(session)
 
-    async def get_downloadlink(x):
+    async def get_downloadlink(x: Dict[str, str]) -> str:
         source = x["source"]
         if source == "github":
             return await apkdl.github(*x["args"])
@@ -58,9 +58,7 @@ async def write_choice(session: aiohttp.ClientSession):
             return await apkdl.fdroid(x["package"])
         if source == "json":
             return (await apkdl._get_json(x["api"])).get(x["args"][0])
-        if source == "direct":
-            return x["link"]
-        if source == "gcam":
+        if source in ("direct", "gcam"):
             return x["link"]
 
     with open("apps.json", "r") as f:
@@ -73,8 +71,8 @@ async def write_choice(session: aiohttp.ClientSession):
     )
     if out := await process.communicate():
         if out[0].decode("utf-8", "replace").strip() == "Redmi Note 8 Pro":
-            apk_data.append(data["gcam"]["begonia"])
-    choice = input(f"\n  Quick Install {len(apk_data)} Apps ? (y/n)  ").lower().strip()
+            apk_data += data["devices"]["begonia"]
+    choice = input(f"\n  Quick Install ({len(apk_data)}) Apps ? (y/n)  ").lower().strip()
     if choice in ("yes", "y"):
         to_install = apk_data
     elif choice in ("no", "n"):
@@ -84,12 +82,12 @@ async def write_choice(session: aiohttp.ClientSession):
                 to_install.append(u)
     else:
         sys.exit("  Invalid response ! Exiting ...")
-    urls = await asyncio.gather(*list(map(lambda x: get_downloadlink(x), to_install)))
+    urls = await asyncio.gather(*list(map(get_downloadlink, to_install)))
     with open("apk_urls.txt", "w") as outfile:
         outfile.write("\n".join(urls))
 
 
-async def main():
+async def main() -> None:
     session = aiohttp.ClientSession()
     try:
         await write_choice(session)

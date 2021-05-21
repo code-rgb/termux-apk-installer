@@ -53,14 +53,14 @@ python3 get_apk.py
 
 # Check if python program failed 
 if ! [[ -f "apk_urls.txt" ]]; then
-    echo -e "  [!] Failed fetch apks.\n\n  Exiting ..."
+    echo -e "  [!] Failed fetch apks.\n\n  Exiting."
     exit 1
 fi
 
-echo -e "\n\n  Downloading apks ... (Please wait)"
+echo -e "\n\n  Downloading apks (Please wait) ..."
 while ((i++)); read url
 do
-  echo "  $i>  $url"
+  echo "  $i)  $url"
   curl -sL -O "$url"
 done < apk_urls.txt
 
