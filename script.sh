@@ -50,14 +50,24 @@ CFLAGS="-O0" pip install aiohttp 1> /dev/null
 clear
 logo
 python3 get_apk.py
-echo -e "\n\n  Downloading apks."
-while read url; do
-  echo "  ->  $url"
+
+# Check if python program failed 
+if ! [[ -f "apk_urls.txt" ]]; then
+    echo -e "  [!] Failed fetch apks.\n\n  Exiting ..."
+    exit 1
+fi
+
+echo -e "\n\n  Downloading apks ... (Please wait)"
+while ((i++)); read url
+do
+  echo "  $i>  $url"
   curl -sL -O "$url"
 done < apk_urls.txt
+
 echo -e "\n  Installing ..."
 for package in *.apk; do 
   termux-open $package
   sleep 8
 done
+
 echo -e "\n  Done, Success :)"

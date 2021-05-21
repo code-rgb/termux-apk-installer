@@ -74,7 +74,7 @@ async def write_choice(session: aiohttp.ClientSession):
     if out := await process.communicate():
         if out[0].decode("utf-8", "replace").strip() == "Redmi Note 8 Pro":
             apk_data.append(data["gcam"]["begonia"])
-    choice = input(f"\n\n  Quick Install {len(apk_data)} Apps ? (y/n)  ").lower().strip()
+    choice = input(f"\n  Quick Install {len(apk_data)} Apps ? (y/n)  ").lower().strip()
     if choice in ("yes", "y"):
         to_install = apk_data
     elif choice in ("no", "n"):
@@ -83,7 +83,7 @@ async def write_choice(session: aiohttp.ClientSession):
             if promt(u["name"], u["description"]):
                 to_install.append(u)
     else:
-        sys.exit("Invalid response ! Exiting ...")
+        sys.exit("  Invalid response ! Exiting ...")
     urls = await asyncio.gather(*list(map(lambda x: get_downloadlink(x), to_install)))
     with open("apk_urls.txt", "w") as outfile:
         outfile.write("\n".join(urls))
