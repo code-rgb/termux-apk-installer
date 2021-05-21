@@ -2,6 +2,7 @@ import asyncio
 import json
 import os
 import sys
+from pathlib import Path
 from typing import Dict, List, Optional
 
 import aiohttp
@@ -61,12 +62,14 @@ async def write_choice(session: aiohttp.ClientSession):
         if source == "direct":
             return x["link"]
         if source == "gcam":
-            xml_path = "/data/data/com.termux/files/home/storage/Gcam/BSG"
-            if not os.path.exists(xml_path):
-                os.mkdir(xml_path)
-            with open(os.path.join(xml_path, "config.xml"), "w") as xml_file:
-                async with session.get(x["xml"]) as r:
-                    xml_file.write(await r.text())
+            home_dir = str(Path.home())
+            xml_path = os.path.join(home_dir, "storage/Gcam/BSG")
+            Path(xml_path).parent.mkdir(parents=True, exist_ok=True)
+            async with session.get(x["xml"]) as r:
+                xml_data = await r.text()
+            xml_config = os.path.join(xml_path, "config.xml")
+            with open(xml_config, "w") as xml_file:
+                xml_file.write(xml_data)
             return x["link"]
 
     with open("apps.json", "r") as f:
@@ -80,7 +83,7 @@ async def write_choice(session: aiohttp.ClientSession):
     if out := await process.communicate():
         if out[0].decode("utf-8", "replace").strip() == "Redmi Note 8 Pro":
             apk_data.append(data["gcam"]["begonia"])
-    choice = input(f"Quick Install {len(apk_data)} Apps ? (y/n)  ").lower().strip()
+    choice = input(f"\n\nQuick Install {len(apk_data)} Apps ? (y/n)  ").lower().strip()
     if choice in ("yes", "y"):
         to_install = apk_data
     elif choice in ("no", "n"):

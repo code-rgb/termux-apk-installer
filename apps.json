@@ -32,10 +32,22 @@
 			"package": "ml.docilealligator.infinityforreddit"
 		},
 		{
-			"name": "F-Droid",
-			"description": "FOSS (Free and Open Source Software) applications catalogue",
-			"source": "direct",
-			"link": "https://f-droid.org/F-Droid.apk"
+			"name": "Aurora Droid",
+			"description": "An alternative to the default F-Droid app",
+			"source": "fdroid",
+			"package": "com.aurora.adroid"
+		},
+		{
+			"name": "Aurora Store",
+			"description": "A Google Playstore Client",
+			"source": "fdroid",
+			"package": "com.aurora.store"
+		},
+		{
+			"name": "AdAway",
+			"description": "A free and Open Source ad blocker for Android.",
+			"source": "fdroid",
+			"package": "org.adaway"
 		},
 		{
 			"name": "Vanced Manager",
