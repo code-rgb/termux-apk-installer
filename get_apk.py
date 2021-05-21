@@ -36,15 +36,15 @@ class FetchApk:
 
 def promt(title: str, info: str) -> bool:
     answer = input(
-        f"• {title} ({info})\n  Do you want to install {title} ? (y/n) : "
+        f"\n• {title} ({info})\n  Q. Do you want to install {title} ? (y/n) : "
     ).lower()
     if answer in ("yes", "y"):
-        print("  ->  added", title)
+        print("  (+)  added", title)
         return True
     if answer in ("no", "n"):
-        print("  ->  skipped", title)
+        print("  (-)  skipped", title)
     else:
-        print("  ->  invalid input ! skipping ...")
+        print("  (x)  invalid input ! skipping ...")
     return False
 
 

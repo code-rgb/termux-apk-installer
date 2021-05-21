@@ -18,24 +18,26 @@ termux_update_promt () {
     fi
 }
 
-echo -e "\n\nInitializing"
+echo -e "\n\nInitializing ..."
 termux-setup-storage
 pkg update -y && pkg upgrade -y
-echo "Checking Python Installtion"
-pkg install -y python git curl &> /dev/null
+clear
+echo -e "Checking Python installation ...\n"
+pkg install -y python curl &> /dev/null
 termux_update_promt
 pip install -U pip wheel setuptools 1> /dev/null
-echo "Installing requirements"
+echo "Installing requirements ..."
 CFLAGS="-O0" pip install aiohttp 1> /dev/null
 echo -e "Running python script ...\n"
 python3 get_apk.py
-echo "Downloading apks"
+echo -e "\n\nDownloading apks ..."
 while read url; do
-  echo "  --> $url"
+  echo "  ->  $url"
   curl -sL -O "$url"
 done < apk_urls.txt
-echo "Installing"
+echo -e "\nInstalling ..."
 for package in *.apk; do 
   termux-open $package
-  sleep 5
+  sleep 10
 done
+echo -e "\n\nDone, Success :)"
