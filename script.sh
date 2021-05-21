@@ -15,7 +15,7 @@ logo () {
       _| |_| | | \__ \ || (_| | | |  __/ |   
      |_____|_| |_|___/\__\__,_|_|_|\___|_|
     _________________________________________
-
+                                By: code-rgb
     "
 }
 termux_apk () {
@@ -35,7 +35,7 @@ termux_update_promt () {
         echo -e "\n  [+] Downloading Latest Termux."
         down_path="storage/termux_latest.apk"
         cd $HOME && curl -o $down_path $(termux_apk)
-        echo -e "\nUninstall current Termux and Install from $down_path"
+        echo -e "\nUninstall current version and install manually from $down_path"
         exit 1
     fi
 }
@@ -60,6 +60,6 @@ done < apk_urls.txt
 echo -e "\n  Installing ..."
 for package in *.apk; do 
   termux-open $package
-  sleep 10
+  sleep 8
 done
-echo -e "\n\n  Done, Success :)"
+echo -e "\n  Done, Success :)"
