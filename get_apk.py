@@ -2,7 +2,6 @@ import asyncio
 import json
 import os
 import sys
-from pathlib import Path
 from typing import Dict, List, Optional
 
 import aiohttp
@@ -36,15 +35,15 @@ class FetchApk:
 
 def promt(title: str, info: str) -> bool:
     answer = input(
-        f"\n• {title} ({info})\n  Q. Do you want to install {title} ? (y/n) : "
+        f"\n • {title} ({info})\n  Q. Do you want to install {title} ?\n  (y/n) : "
     ).lower()
     if answer in ("yes", "y"):
-        print("  (+)  added", title)
+        print("  [+]  added", title)
         return True
     if answer in ("no", "n"):
-        print("  (-)  skipped", title)
+        print("  [-]  skipped", title)
     else:
-        print("  (x)  invalid input ! skipping ...")
+        print("  [x]  invalid input ! skipping ...")
     return False
 
 
@@ -62,14 +61,6 @@ async def write_choice(session: aiohttp.ClientSession):
         if source == "direct":
             return x["link"]
         if source == "gcam":
-            home_dir = str(Path.home())
-            xml_path = os.path.join(home_dir, "storage/Gcam/BSG")
-            Path(xml_path).parent.mkdir(parents=True, exist_ok=True)
-            async with session.get(x["xml"]) as r:
-                xml_data = await r.text()
-            xml_config = os.path.join(xml_path, "config.xml")
-            with open(xml_config, "w") as xml_file:
-                xml_file.write(xml_data)
             return x["link"]
 
     with open("apps.json", "r") as f:
