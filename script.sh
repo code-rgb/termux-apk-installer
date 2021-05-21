@@ -18,6 +18,7 @@ logo () {
                                 By: code-rgb
     "
 }
+
 termux_apk () {
     curl -s "https://f-droid.org/api/v1/packages/com.termux" | \
     python3 -c "import sys, json; ver = json.load(sys.stdin)['suggestedVersionCode'] ; print(f'https://f-droid.org/repo/com.termux_{ver}.apk')"
@@ -40,9 +41,6 @@ termux_update_promt () {
     fi
 }
 
-echo -e "\n\n  Initializing ..."
-termux-setup-storage
-pkg update -y && pkg upgrade -y
 echo -e "  Checking Python installation\n"
 pkg install -y python curl &> /dev/null
 termux_update_promt
