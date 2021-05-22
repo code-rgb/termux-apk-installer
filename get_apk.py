@@ -5,6 +5,7 @@ import sys
 from typing import Dict, List, Optional
 
 import aiohttp
+from bs4 import BeautifulSoup
 
 
 class FetchApk:
@@ -62,7 +63,14 @@ async def write_choice(session: aiohttp.ClientSession) -> None:
             return f"https://github.com/code-rgb/termux-apk-installer/raw/apks/{x['file']}.apk"
         if source in ("direct", "gcam"):
             return x["link"]
-
+        if source == "vlc":
+            async with session.get(x["link"]) as resp:
+                if resp.status != 200:
+                    return
+                page = await resp.text()
+            soup = BeautifulSoup(page, "html.parser")
+            version = soup.find("span", {"id": "downloadVersion"}).text.strip()
+            return f"https://get.videolan.org/vlc-android/{version}/VLC-Android-{version}-arm64-v8a.apk"
 
     with open("apps.json", "r") as f:
         data = json.load(f)

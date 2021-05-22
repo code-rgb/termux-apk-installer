@@ -46,7 +46,7 @@ pkg install -y python curl &> /dev/null
 termux_update_promt
 pip install -U pip wheel setuptools 1> /dev/null
 echo -e "  Installing requirements ..."
-CFLAGS="-O0" pip install aiohttp 1> /dev/null
+CFLAGS="-O0" pip install aiohttp beautifulsoup4 1> /dev/null
 clear
 logo
 python3 get_apk.py

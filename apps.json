@@ -70,8 +70,8 @@
 		{
 			"name": "VLC",
 			"description": "The best video and music player. Fast and “just works”, plays any file",
-			"source": "fdroid",
-			"package": "org.videolan.vlc"
+			"source": "vlc",
+			"link": "https://www.videolan.org/vlc/download-android.html"
 		}
 	],
 	"devices": {
