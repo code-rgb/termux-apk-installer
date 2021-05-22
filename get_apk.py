@@ -83,6 +83,7 @@ async def write_choice(session: aiohttp.ClientSession) -> None:
     if out := await process.communicate():
         if out[0].decode("utf-8", "replace").strip() == "Redmi Note 8 Pro":
             apk_data += data["devices"]["begonia"]
+    print("[ All Apps ] :", ", ".join(list(map(lambda x: x['name'], apk_data))))
     choice = (
         input(f"\n  Quick Install ({len(apk_data)}) Apps ? (y/n)  ").lower().strip()
     )

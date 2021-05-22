@@ -57,10 +57,10 @@ if ! [[ -f "apk_urls.txt" ]]; then
     exit 1
 fi
 
-echo -e "\n\n  Downloading apks (Please wait) ..."
+echo -e "\n  Downloading apks (Please wait) ..."
 while ((i++)); read url
 do
-  echo "  $i)  $url"
+  echo "  $i)  $(basename $url)"
   curl -sL -O "$url"
 done < apk_urls.txt
 
@@ -70,4 +70,4 @@ for package in *.apk; do
   sleep 8
 done
 
-echo -e "\n  Done, Success :)"
+echo -e "  Done, Success :)"
