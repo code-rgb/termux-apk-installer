@@ -45,7 +45,7 @@ echo -e "  Checking Python installation\n"
 pkg install -y python curl &> /dev/null
 termux_update_promt
 pip install -U pip wheel setuptools 1> /dev/null
-echo -e "  Installing requirements ..."
+echo "  Installing requirements ..."
 CFLAGS="-O0" pip install aiohttp beautifulsoup4 1> /dev/null
 clear
 logo
@@ -53,11 +53,11 @@ python3 get_apk.py
 
 # Check if python program failed 
 if ! [[ -f "apk_urls.txt" ]]; then
-    echo -e "  [!] Failed fetch apks.\n\n  Exiting."
+    echo -e "  [!] Failed to fetch apks.\n\n  Exiting."
     exit 1
 fi
 
-echo -e "\n  Downloading apks (Please wait) ..."
+echo -e "\n  Downloading apks (Please wait ...)"
 while ((i++)); read url
 do
   echo "  $i)  $(basename $url)"
@@ -70,4 +70,4 @@ for package in *.apk; do
   sleep 8
 done
 
-echo -e "  Done, Success :)"
+echo "  Done, Success :)"
