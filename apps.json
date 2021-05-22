@@ -66,6 +66,12 @@
 			"description": "Spyware, get Zucked :p",
 			"source": "repo",
 			"file": "com.whatsapp_2.21.10.14"
+		},
+		{
+			"name": "VLC",
+			"description": "The best video and music player. Fast and “just works”, plays any file",
+			"source": "fdroid",
+			"package": "org.videolan.vlc"
 		}
 	],
 	"devices": {
