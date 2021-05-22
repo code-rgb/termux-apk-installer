@@ -58,8 +58,11 @@ async def write_choice(session: aiohttp.ClientSession) -> None:
             return await apkdl.fdroid(x["package"])
         if source == "json":
             return (await apkdl._get_json(x["api"])).get(x["args"][0])
+        if source == "repo":
+            return f"https://github.com/code-rgb/termux-apk-installer/raw/apks/{x['file']}.apk"
         if source in ("direct", "gcam"):
             return x["link"]
+
 
     with open("apps.json", "r") as f:
         data = json.load(f)

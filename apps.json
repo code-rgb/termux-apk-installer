@@ -54,6 +54,18 @@
 			"description": "Install Youtube Vanced, Vanced Music and Micro G",
 			"source": "github",
 			"args": ["YTVanced/VancedManager", "manager.apk"]
+		},
+		{
+			"name": "MiXplorer",
+			"description": "a fast, smooth, beautiful, reliable and full-featured Android file manager",
+			"source": "repo",
+			"file": "com.mixplorer_6.56.1-API29"
+		},
+		{
+			"name": "Whatsapp",
+			"description": "Spyware, get Zucked :p",
+			"source": "repo",
+			"file": "com.whatsapp_2.21.10.14"
 		}
 	],
 	"devices": {
