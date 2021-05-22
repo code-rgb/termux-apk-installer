@@ -1,5 +1,5 @@
 # Termux-Apk-Installer
- Script to install some latest cool apps in android
+Script to easily download and install application via Termux. (root / non-root)
  
 ## Run the script
  - requires [Latest Termux](https://f-droid.org/packages/com.termux/)
