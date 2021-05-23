@@ -12,7 +12,7 @@ class FetchApk:
     def __init__(self, session: aiohttp.ClientSession):
         self._session = session
 
-    async def _get_json(self, url: str) -> Optional[Dict]:
+    async def get_json(self, url: str) -> Optional[Dict]:
         async with self._session.get(url) as resp:
             if resp.status == 200:
                 try:
@@ -22,14 +22,14 @@ class FetchApk:
 
     async def github(self, repo: str, name: str) -> Optional[str]:
         for apk in (
-            await self._get_json(f"https://api.github.com/repos/{repo}/releases/latest")
+            await self.get_json(f"https://api.github.com/repos/{repo}/releases/latest")
         ).get("assets"):
             if apk.get("name") == name:
                 return apk.get("browser_download_url")
 
     async def fdroid(self, pkg_name: str) -> Optional[str]:
         version = (
-            await self._get_json(f"https://f-droid.org/api/v1/packages/{pkg_name}")
+            await self.get_json(f"https://f-droid.org/api/v1/packages/{pkg_name}")
         ).get("suggestedVersionCode")
         return f"https://f-droid.org/repo/{pkg_name}_{version}.apk"
 
@@ -58,7 +58,10 @@ async def write_choice(session: aiohttp.ClientSession) -> None:
         if source == "fdroid":
             return await apkdl.fdroid(x["package"])
         if source == "json":
-            return (await apkdl._get_json(x["api"])).get(x["args"][0])
+            resp = await apkdl.get_json(x["api"])
+            while len(x["args"]) != 0:
+                resp = resp[x["args"].pop(0)]
+            return resp
         if source == "repo":
             return f"https://github.com/code-rgb/termux-apk-installer/raw/apks/{x['file']}.apk"
         if source in ("direct", "gcam"):

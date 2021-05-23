@@ -1,86 +1,93 @@
 {
 	"apps": [
 		{
-			"name": "Bromite Browser",
+			"args": ["bromite/bromite", "arm64_ChromePublic.apk"],
 			"description": "a Chromium fork with ad blocking and enhanced privacy",
-			"source": "github",
-			"args": ["bromite/bromite", "arm64_ChromePublic.apk"]
+			"name": "Bromite Browser",
+			"source": "github"
 		},
 		{
-			"name": "NekoX",
+			"args": ["NekoX-Dev/NekoX", "NekoX-mini-arm64-v8a-releaseNoGcm.apk"],
 			"description": "a free and open source third-party Telegram client, based on Telegram-FOSS with features added.",
-			"source": "github",
-			"args": ["NekoX-Dev/NekoX", "NekoX-mini-arm64-v8a-releaseNoGcm.apk"]
+			"name": "NekoX",
+			"source": "github"
 		},
 		{
-			"name": "Instander",
-			"description": "Instagram Mod",
-			"source": "json",
 			"api": "https://raw.githubusercontent.com/the-dise/the-dise.github.io/master/instander/ota.json",
-			"args": ["link"]
+			"args": ["link"],
+			"description": "Instagram Mod",
+			"name": "Instander",
+			"source": "json"
 		},
 		{
-			"name": "Spotify",
 			"description": "Adfree Spotify Mod",
-			"source": "direct",
-			"link": "http://transfer.sh/get/9rcvP/Spotify-v8.6.26.897Mod-Amoled-arm64-v8a.apk"
+			"link": "http://transfer.sh/get/9rcvP/Spotify-v8.6.26.897Mod-Amoled-arm64-v8a.apk",
+			"name": "Spotify",
+			"source": "direct"
 		},
 		{
-			"name": "Infinity for Reddit",
 			"description": "A beautiful, feature-rich Reddit client.",
-			"source": "fdroid",
-			"package": "ml.docilealligator.infinityforreddit"
+			"name": "Infinity for Reddit",
+			"package": "ml.docilealligator.infinityforreddit",
+			"source": "fdroid"
 		},
 		{
-			"name": "Aurora Droid",
 			"description": "An alternative to the default F-Droid app",
-			"source": "fdroid",
-			"package": "com.aurora.adroid"
+			"name": "Aurora Droid",
+			"package": "com.aurora.adroid",
+			"source": "fdroid"
 		},
 		{
-			"name": "Aurora Store",
 			"description": "A Google Playstore Client",
-			"source": "fdroid",
-			"package": "com.aurora.store"
+			"name": "Aurora Store",
+			"package": "com.aurora.store",
+			"source": "fdroid"
 		},
 		{
-			"name": "AdAway",
 			"description": "A free and Open Source ad blocker for Android.",
-			"source": "fdroid",
-			"package": "org.adaway"
+			"name": "AdAway",
+			"package": "org.adaway",
+			"source": "fdroid"
 		},
 		{
-			"name": "Vanced Manager",
+			"args": ["YTVanced/VancedManager", "manager.apk"],
 			"description": "Install Youtube Vanced, Vanced Music and Micro G",
-			"source": "github",
-			"args": ["YTVanced/VancedManager", "manager.apk"]
+			"name": "Vanced Manager",
+			"source": "github"
 		},
 		{
-			"name": "MiXplorer",
 			"description": "a fast, smooth, beautiful, reliable and full-featured Android file manager",
-			"source": "repo",
-			"file": "com.mixplorer_6.56.1-API29"
+			"file": "com.mixplorer_6.56.1-API29",
+			"name": "MiXplorer",
+			"source": "repo"
 		},
 		{
-			"name": "Whatsapp",
 			"description": "Spyware, get Zucked :p",
-			"source": "repo",
-			"file": "com.whatsapp_2.21.10.14"
+			"file": "com.whatsapp_2.21.10.14",
+			"name": "Whatsapp",
+			"source": "repo"
 		},
 		{
+			"description": "The best video and music player. Fast and \"just works\", plays any file",
+			"link": "https://www.videolan.org/vlc/download-android.html",
 			"name": "VLC",
-			"description": "The best video and music player. Fast and “just works”, plays any file",
-			"source": "vlc",
-			"link": "https://www.videolan.org/vlc/download-android.html"
+			"source": "vlc"
+		},
+		{
+			"api": "https://raw.githubusercontent.com/topjohnwu/magisk-files/master/stable.json",
+			"args": ["magisk", "link"],
+			"description": "Magisk is an all-in-one root solution for Android devices",
+			"name": "Magisk Manager",
+			"source": "json"
 		}
 	],
 	"devices": {
 		"begonia": [
 			{
-				"name": "Gcam MGC",
 				"description": "Google Camera for Redmi Note 8 Pro",
-				"source": "gcam",
 				"link": "https://7-dontsharethislink.celsoazevedo.com/file/filesc/a/MGC_8.1.101_A9_PV0e.apk",
+				"name": "Gcam MGC",
+				"source": "gcam",
 				"xml": ""
 			}
 		]
