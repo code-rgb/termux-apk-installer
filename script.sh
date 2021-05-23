@@ -15,7 +15,7 @@ logo () {
       _| |_| | | \__ \ || (_| | | |  __/ |   
      |_____|_| |_|___/\__\__,_|_|_|\___|_|
     _________________________________________
-    v0.1                         By: code-rgb
+    v0.2                         By: code-rgb
     "
 }
 
@@ -41,6 +41,15 @@ termux_update_promt () {
     fi
 }
 
+install_non_root () {
+   termux-open $1
+   sleep 8
+}
+
+install_root () {
+    pm install $1 &> /dev/null
+}
+
 echo -e "  Checking Python installation\n"
 pkg install -y python curl &> /dev/null
 termux_update_promt
@@ -57,17 +66,24 @@ if ! [[ -f "apk_urls.txt" ]]; then
     exit 1
 fi
 
-echo -e "\n  Downloading apks (Please wait ...)"
+echo -e "\n  Downloading apks (Please wait) ..."
 while ((i++)); read url
 do
-  echo "  $i)  $(basename $url)"
+  echo "   $i) $(basename $url)"
   curl -sL -O "$url"
 done < apk_urls.txt
 
-echo -e "\n  Installing ..."
+# Check root permissions
+if [ $HOME == "/" ] ; then
+    install_apk=install_root
+    echo -e "\n  Installing apps (root method) ..."
+else
+    install_apk=install_non_root
+    echo -e "\n  Installing apps (non-root method) ..."
+fi
+
 for package in *.apk; do 
-  termux-open $package
-  sleep 8
+  $install_apk $package
 done
 
 echo "  Done, Success :)"
