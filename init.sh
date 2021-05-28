@@ -16,7 +16,7 @@ pkg install -y git &> /dev/null
 cd "$file_path/home"
 echo -e "  Cloning termux-apk-installer"
 git clone https://github.com/code-rgb/termux-apk-installer.git apk_installer &> /dev/null
-cd apk_installer && chmod +x script.sh && ./script.sh
+cd apk_installer && bash script.sh
 echo -e "\n  Removing installed apks"
 cd "$file_path/home" && rm -rf apk_installer
 echo "  Done."
