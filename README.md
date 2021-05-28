@@ -19,7 +19,7 @@ pkg update -y && pkg upgrade -y && pkg install -y git python
 - Grant root permissions and enter root by `su` and paste the below command in terminal
 
 ```
-file_path=/data/data/com.termux/files && export LD_LIBRARY_PATH="$file_path/usr/lib" && PATH="${PATH}:$file_path/usr/bin"
+file_path="/data/data/com.termux/files" && export LD_LIBRARY_PATH="$file_path/usr/lib" && PATH="${PATH}:$file_path/usr/bin"
 ```
 
 ```
