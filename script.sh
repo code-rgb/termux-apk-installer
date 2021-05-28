@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/sh
+
+home_dir="/data/data/com.termux/files/home"
 
 logo () {
     echo "
@@ -15,7 +17,7 @@ logo () {
       _| |_| | | \__ \ || (_| | | |  __/ |   
      |_____|_| |_|___/\__\__,_|_|_|\___|_|
     _________________________________________
-    v0.2                         By: code-rgb
+    Version v0.3                 By: code-rgb
     "
 }
 
@@ -35,8 +37,8 @@ termux_update_promt () {
     else
         echo -e "\n  [+] Downloading Latest Termux."
         down_path="storage/termux_latest.apk"
-        cd $HOME && curl -o $down_path $(termux_apk)
-        echo -e "\nUninstall current version and install manually from $down_path"
+        cd $home_dir && curl -o $down_path $(termux_apk)
+        echo -e "\n  Uninstall current version and install manually from $down_path"
         exit 1
     fi
 }
@@ -54,7 +56,7 @@ echo -e "  Checking Python installation\n"
 pkg install -y python curl &> /dev/null
 termux_update_promt
 pip install -U pip wheel setuptools 1> /dev/null
-echo "  Installing requirements ..."
+echo -e "\n  Installing requirements ..."
 CFLAGS="-O0" pip install aiohttp beautifulsoup4 1> /dev/null
 clear
 logo
