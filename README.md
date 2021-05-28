@@ -2,6 +2,14 @@
 
 Script to easily download and install application via Termux. (root / non-root)
 
+## Requirements
+
+- Install required pakages by:
+
+```
+pkg update -y && pkg upgrade -y && pkg install -y git python &> /dev/null
+```
+
 ## Run the script
 
 - requires [Latest Termux](https://f-droid.org/packages/com.termux/)

@@ -10,9 +10,6 @@ fi
 
 termux-setup-storage
 echo -e "\n\n  Initializing ..."
-pkg update -y && pkg upgrade -y
-echo -e "\n\n  Checking Git installation"
-pkg install -y git &> /dev/null
 cd "$file_path/home"
 echo -e "  Cloning termux-apk-installer"
 git clone https://github.com/code-rgb/termux-apk-installer.git apk_installer &> /dev/null

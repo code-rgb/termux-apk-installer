@@ -53,8 +53,6 @@ install_root () {
 }
 
 
-echo -e "  Checking Python installation\n"
-pkg install -y python curl &> /dev/null
 termux_update_promt
 pip install -U pip wheel setuptools 1> /dev/null
 echo -e "\n  Installing requirements ..."
