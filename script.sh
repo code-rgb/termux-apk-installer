@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/sh
+#!/usr/bin/env bash
 
 home_dir="/data/data/com.termux/files/home"
 
