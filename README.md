@@ -7,7 +7,7 @@ Script to easily download and install application via Termux. (root / non-root)
 - Install required pakages by:
 
 ```
-pkg update -y && pkg upgrade -y && pkg install -y git python &> /dev/null
+pkg update -y && pkg upgrade -y && pkg install -y git python
 ```
 
 ## Run the script
