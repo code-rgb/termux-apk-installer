@@ -8,7 +8,6 @@ if [[ -z "$LD_LIBRARY_PATH" ]] ; then
     PATH="${PATH}:$file_path/usr/bin"
 fi
 
-termux-setup-storage
 echo -e "\n\n  Initializing ..."
 cd "$file_path/home"
 echo -e "  Cloning termux-apk-installer"
