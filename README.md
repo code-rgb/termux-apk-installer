@@ -1,14 +1,19 @@
 # Termux-Apk-Installer
-Script to easily download and install application via Termux. (root / non-root)
- 
-## Run the script
- - requires [Latest Termux](https://f-droid.org/packages/com.termux/)
 
-### Non-root
- ```
- bash <(curl -s https://del.dog/raw/apk_installer)
- ```
+Script to easily download and install application via Termux. (root / non-root)
+
+## Run the script
+
+- requires [Latest Termux](https://f-droid.org/packages/com.termux/)
+
 ### Root
-- Download this script - [init.sh](https://raw.githubusercontent.com/code-rgb/termux-apk-installer/master/init.sh)
-- Grant root permissions by `su`
-- cd to download folder and do `chmod +x init.sh && ./init.sh`
+
+- Grant root permissions and enter root by `su` and paste the below command in terminal
+
+```
+file_path=/data/data/com.termux/files && export LD_LIBRARY_PATH="$file_path/usr/lib" && PATH="${PATH}:$file_path/usr/bin"
+```
+
+```
+bash <(curl -s https://del.dog/raw/apk_installer)
+```

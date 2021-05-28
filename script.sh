@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-home_dir="/data/data/com.termux/files/home"
+HOME_DIR="/data/data/com.termux/files/home"
 
 logo () {
     echo "
@@ -37,7 +37,7 @@ termux_update_promt () {
     else
         echo -e "\n  [+] Downloading Latest Termux."
         down_path="storage/termux_latest.apk"
-        cd $home_dir && curl -o $down_path $(termux_apk)
+        cd $HOME_DIR && curl -o $down_path $(termux_apk)
         echo -e "\n  Uninstall current version and install manually from $down_path"
         exit 1
     fi
@@ -51,6 +51,7 @@ install_non_root () {
 install_root () {
     pm install $1 &> /dev/null
 }
+
 
 echo -e "  Checking Python installation\n"
 pkg install -y python curl &> /dev/null

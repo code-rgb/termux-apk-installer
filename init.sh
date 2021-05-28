@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-file_path=/data/data/com.termux/files
+file_path="/data/data/com.termux/files"
 
 if [[ -z "$LD_LIBRARY_PATH" ]] ; then
     echo -e "\n\n  Setting LD_LIBRARY_PATH ..."

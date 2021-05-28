@@ -81,15 +81,5 @@
 			"source": "json"
 		}
 	],
-	"devices": {
-		"begonia": [
-			{
-				"description": "Google Camera for Redmi Note 8 Pro",
-				"link": "https://7-dontsharethislink.celsoazevedo.com/file/filesc/a/MGC_8.1.101_A9_PV0e.apk",
-				"name": "Gcam MGC",
-				"source": "gcam",
-				"xml": ""
-			}
-		]
-	}
+	"devices": {}
 }
