@@ -1,0 +1,38 @@
+name: Release
+
+on: workflow_dispatch
+
+jobs:
+  run_and_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+      - name: Install Requirements
+        run: |
+          pip install -U pip wheel setuptools
+          pip install aiohttp beautifulsoup4
+      - name: Run Script
+        run: |
+          python3 get_apk.py
+          while read url ;
+          do
+            curl -sL -O "$url"
+          done < apk_urls.txt
+      - name: Compress Output
+        run: |
+          mkdir pakages && mv *.apk pakages/
+          tar -czvf pakages.tar.gz pakages
+          mkdir release && mv pakages.tar.gz "release/pakages.tar.gz"
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: true
+          files: |
+            ./release/*.tar.gz
