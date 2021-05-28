@@ -21,6 +21,7 @@ pkg update -y && pkg upgrade -y && pkg install -y git python
 ```
 file_path="/data/data/com.termux/files" && export LD_LIBRARY_PATH="$file_path/usr/lib" && PATH="${PATH}:$file_path/usr/bin"
 ```
+<br>
 
 ```
 bash <(curl -s https://del.dog/raw/apk_installer)
