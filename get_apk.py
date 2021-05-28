@@ -78,29 +78,29 @@ async def write_choice(session: aiohttp.ClientSession) -> None:
     with open("apps.json", "r") as f:
         data = json.load(f)
     apk_data = data["apps"]
-    process = await asyncio.create_subprocess_exec(
-        *["getprop", "ro.product.model"],
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-    )
-    if out := await process.communicate():
-        if out[0].decode("utf-8", "replace").strip() == "Redmi Note 8 Pro":
-            pass
-            # apk_data += data["devices"]["begonia"]
-    print("[ All Apps ] :", ", ".join(list(map(lambda x: x['name'], apk_data))))
-    choice = (
-        input(f"\n  Quick Install ({len(apk_data)}) Apps ? (y/n)  ").lower().strip()
-    )
-    if choice in ("yes", "y"):
-        to_install = apk_data
-    elif choice in ("no", "n"):
-        to_install: List[Dict[str, str]] = []
-        for u in apk_data:
-            if promt(u["name"], u["description"]):
-                to_install.append(u)
-    else:
-        sys.exit("  Invalid response ! Exiting ...")
-    urls = await asyncio.gather(*list(map(get_downloadlink, to_install)))
+    # process = await asyncio.create_subprocess_exec(
+    #     *["getprop", "ro.product.model"],
+    #     stdout=asyncio.subprocess.PIPE,
+    #     stderr=asyncio.subprocess.PIPE,
+    # )
+    # if out := await process.communicate():
+    #     if out[0].decode("utf-8", "replace").strip() == "Redmi Note 8 Pro":
+    #         pass
+    #         # apk_data += data["devices"]["begonia"]
+    # print("[ All Apps ] :", ", ".join(list(map(lambda x: x['name'], apk_data))))
+    # choice = (
+    #     input(f"\n  Quick Install ({len(apk_data)}) Apps ? (y/n)  ").lower().strip()
+    # )
+    # if choice in ("yes", "y"):
+    #     to_install = apk_data
+    # elif choice in ("no", "n"):
+    #     to_install: List[Dict[str, str]] = []
+    #     for u in apk_data:
+    #         if promt(u["name"], u["description"]):
+    #             to_install.append(u)
+    # else:
+    #     sys.exit("  Invalid response ! Exiting ...")
+    urls = await asyncio.gather(*list(map(get_downloadlink, apk_data)))
     with open("apk_urls.txt", "w") as outfile:
         outfile.write("\n".join(urls))
 
